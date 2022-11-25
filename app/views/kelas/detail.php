@@ -11,7 +11,14 @@
             									<h1 class="mb-5 font-weight-bold">Daftar Siswa</h1>
             								</div>
             								<div>
-            									<h1 class="mb-5 font-weight-bold"><?= $data['kelas']['nama_kelas'] ?></h1>
+            									<h1 class="mb-5 font-weight-bold">
+            										<?php
+													if (!empty($data['kelas']['nama_kelas'])) {
+														echo $data['kelas']['nama_kelas'];
+													} else {
+														echo '';
+													}
+													?></h1>
             								</div>
             							</div>
             							<div class="row">
@@ -47,23 +54,27 @@
             										<tbody>
             											<?php
 														$no = 1;
-														foreach ($data['siswa'] as $siswa) : ?>
-            												<tr>
-            													<th scope="row"><?= $no ?></th>
-            													<td><?= $siswa['nis']; ?></td>
-            													<td><?= $siswa['nama_siswa']; ?></td>
-            													<td><?= $siswa['jenis_kelamin']; ?></td>
-            													<td>
-            														<button type="button" class="btn btn-warning" data-toggle="modal" data-nis="<?= $siswa['nis']; ?>" data-nama="<?= $siswa['nama_siswa']; ?>" data-kelamin="<?= $siswa['jenis-kelamin']; ?>" data-alamat="<?= $siswa['alamat_siswa']; ?>" data-telepon="<?= $siswa['notelp_siswa']; ?>" id="btn-ubah-siswa">
-            															<i class="anticon anticon-edit"></i>
-            														</button>
-            														<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#">
-            															<i class="anticon anticon-delete"></i>
-            														</button>
-            													</td>
-            												</tr>
+														if (!empty($data['siswa'])) {
+															foreach ($data['siswa'] as $siswa) : ?>
+            													<tr>
+            														<th scope="row"><?= $no ?></th>
+            														<td><?= $siswa['nis']; ?></td>
+            														<td><?= $siswa['nama_siswa']; ?></td>
+            														<td><?= $siswa['jenis_kelamin']; ?></td>
+            														<td>
+            															<button type="button" class="btn btn-warning" data-toggle="modal" data-nis="<?= $siswa['nis']; ?>" data-nama="<?= $siswa['nama_siswa']; ?>" data-kelamin="<?= $siswa['jenis-kelamin']; ?>" data-alamat="<?= $siswa['alamat_siswa']; ?>" data-telepon="<?= $siswa['notelp_siswa']; ?>" id="btn-ubah-siswa">
+            																<i class="anticon anticon-edit"></i>
+            															</button>
+            															<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#">
+            																<i class="anticon anticon-delete"></i>
+            															</button>
+            														</td>
+            													</tr>
             											<?php $no++;
-														endforeach; ?>
+															endforeach;
+														} else {
+															echo '';
+														} ?>
             										</tbody>
             									</table>
             								</div>

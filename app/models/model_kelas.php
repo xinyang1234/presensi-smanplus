@@ -2,7 +2,7 @@
 
 class model_kelas
 {
-    protected $tb_admin = 'tb_kelas';
+    protected $tb_kelas = 'tb_kelas';
     protected $db;
 
     public function __construct()
@@ -32,5 +32,21 @@ class model_kelas
         $this->db->bind('nama_kelas', $data['kelas']);
         $this->db->bind('', $data['kelas']);
     }
-}
 
+    public function ubahKelas($data)
+    {
+        $this->db->query('UPDATE tb_kelas SET nama_kelas = :nama_kelas WHERE id_kelas = :id_kelas');
+        $this->db->bind('nama_kelas', $data['kelas']);
+        $this->db->bind('id_kelas', $data['id_kelas']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function getDataUbahKelas($data)
+    {
+        $this->db->query('SELECT * FROM ' . $this->tb_kelas . ' WHERE id_kelas = :id_kelas');
+        $this->db->bind('id_kelas', $data);
+        return $this->db->single();
+    }
+}
