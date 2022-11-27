@@ -1,16 +1,16 @@
 /** 
  * modal ubah kelas
  */
-  $(document).on("click", "#btn-ubah-kelas", function () {
+$(document).on("click", "#btn-ubah-kelas", function () {
     var id_kelas = $(this).data('id');
     var nama_kelas = $(this).data('name');
 
-    $("#nama_kelas").val( nama_kelas );
-    $("#id_kelas").val( id_kelas );
+    $("#nama_kelas").val(nama_kelas);
+    $("#id_kelas").val(id_kelas);
     $("#ubah-kelas").modal();
 });
 
-$(document).on("click", "#btn-ubah-siswa", function () {
+$(document).on("click", "#btn-ubah-siswaa", function () {
     var nis = $(this).data('nis');
     var nama = $(this).data('nama');
     var kelamin = $(this).data('kelamin');
@@ -21,13 +21,13 @@ $(document).on("click", "#btn-ubah-siswa", function () {
     } else {
         var kelamin = 'radio2';
     }
-    $("#nis").val( nis );
-    $("#nama").val( nama );
+    $("#nis").val(nis);
+    $("#nama").val(nama);
     // $("#kelamin").val( kelamin );
-    console.log(kelamin);
+    // console.log(kelamin);
     document.getElementById(kelamin).checked = true;
-    $("#telepon").val( telepon );
-    $("#alamat").val( alamat );
+    $("#telepon").val(telepon);
+    $("#alamat").val(alamat);
     $("#ubah-siswa").modal();
 });
 

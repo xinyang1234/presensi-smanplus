@@ -5,7 +5,6 @@ class homeController extends Controller
     public function __construct()
     {
         if ($_SESSION['session_login'] != 'sudah_login') {
-            Flasher::setFlash('Harap Login terlebih dahulu', 'danger');
             header('location: ' . base_url . 'auth/login');
             exit;
         }

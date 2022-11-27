@@ -64,7 +64,7 @@
                               <p>Siswa</p>
 
                             </div>
-                            <a href="<?= base_url; ?>kelas/detail_kelas/<?= $kelas['id_kelas'] ?>">
+                            <a href="<?= base_url; ?>kelas/detail/<?= $kelas['id_kelas'] ?>">
                               <div class="avatar avatar-icon avatar-lg avatar-white">
                                 <i class="anticon anticon-form text-success"></i>
                               </div>
@@ -153,6 +153,7 @@
       // console.log('CLICKED');
       $('#formModalLabel').html('Tambah Kelas');
       $('#txtNamaKelas').val("");
+      $('#id_kelas').val("");
     });
 
     $('.tampilModalUbah').on('click', function() {

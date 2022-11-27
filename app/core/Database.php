@@ -67,26 +67,29 @@ class Database
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // public function single()
-    // {
-    //     $this->execute();
-    //     return $this->stmt->fetch(PDO::FETCH_ASSOC);
-    // }
+    public function singleAssoc()
+    {
+        $this->execute();
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     //Return multiple records
-    public function resultSet(){
+    public function resultSet()
+    {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     //Return a single record
-    public function single(){
+    public function single()
+    {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
     //Get row count
-    public function rowCount(){
+    public function rowCount()
+    {
         return $this->stmt->rowCount();
     }
 }

@@ -10,14 +10,14 @@
                 </a>
             </li>
             <li class="nav-item dropdown <?= strtolower($data['title']) === "tahun ajaran" ? 'active' : '' ?>" id="liNav">
-                <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>presensi">
+                <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>tahun_ajaran">
                     <span class="icon-holder">
                         <i class="material-icons" style="font-size: 18px;">event</i>
                     </span>
                     <span class="title">Tahun Ajaran</span>
                 </a>
             </li>
-            <li class="nav-item dropdown <?= strtolower($data['title']) === "kelas" ? 'active' : '' ?>" id="liNav">
+            <li class="nav-item dropdown <?= (strtolower($data['title']) === "kelas" ? 'active' : (strtolower($data['title'])=== "detail kelas" ? 'active' : ''))?>" id="liNav">
                 <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>kelas">
                     <span class="icon-holder">
                         <i class="material-icons" style="font-size: 18px;">groups</i>
