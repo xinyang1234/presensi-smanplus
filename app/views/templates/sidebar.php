@@ -17,7 +17,15 @@
                     <span class="title">Tahun Ajaran</span>
                 </a>
             </li>
-            <li class="nav-item dropdown <?= (strtolower($data['title']) === "kelas" ? 'active' : (strtolower($data['title'])=== "detail kelas" ? 'active' : ''))?>" id="liNav">
+            <li class="nav-item dropdown <?= strtolower($data['title']) === "siswa" ? 'active' : '' ?>" id="liNav">
+                <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>siswa">
+                    <span class="icon-holder">
+                        <i class="material-icons" style="font-size: 18px;">person</i>
+                    </span>
+                    <span class="title">Siswa</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown <?= (strtolower($data['title']) === "kelas" ? 'active' : (strtolower($data['title']) === "detail kelas" ? 'active' : '')) ?>" id="liNav">
                 <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>kelas">
                     <span class="icon-holder">
                         <i class="material-icons" style="font-size: 18px;">groups</i>

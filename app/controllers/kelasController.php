@@ -90,7 +90,6 @@ class kelasController extends Controller
             'radio' => $_POST['radio'],
             'tahun_ajaran' => $_POST['tahun_ajaran'],
             'tahun_masuk' => $_POST['tahun_masuk'],
-
         ];
         if (!isset($_POST['submit'])) {
             Flasher::setFlash('Tekan tombol "+" untuk menambahkan siswa', 'warning');
@@ -112,7 +111,7 @@ class kelasController extends Controller
     {
         // echo 'ID KELAS : ' . $_POST['id_kelas'];
         if (!isset($_POST['submit'])) {
-            header('Location: ' . base_url . 'kelas/detail/' . $_SESSION['id_kelas']);
+            header('Location: ' . base_url . 'kelas');
             exit;
         } else {
             if ($this->model('model_detail_kelas')->updateDataSiswa($_POST) > 0) {

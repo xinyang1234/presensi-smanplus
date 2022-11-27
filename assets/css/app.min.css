@@ -11165,7 +11165,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 .datepicker table tr td.day:hover,
 .datepicker table tr td.focused {
     background: rgba(63, 135, 245, 0.1);
-    color: #3f87f5;
+    color: #00eb3c;
     font-weight: 500;
     cursor: pointer
 }
@@ -11174,7 +11174,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 .datepicker .prev:hover,
 .datepicker .next:hover,
 .datepicker tfoot tr th:hover {
-    color: #3f87f5;
+    color: #66d581;
     background-color: transparent;
     cursor: pointer
 }
