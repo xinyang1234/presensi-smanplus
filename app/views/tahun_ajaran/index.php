@@ -21,6 +21,7 @@
                                                 <a class="dropdown-item" href="#">2022/2023</a>
                                             </div>
                                         </div> -->
+                            <button class="btn btn-success tambah-tahun-ajaran" data-toggle="modal" data-target="#modal-tambah-ubah"><span><i class="anticon anticon-plus" style="margin-left: -5px;"></i></span> Tambah</button>
                             <div class="m-t-10">
                                 <div class="table-responsive">
                                     <table class="table">
@@ -63,10 +64,10 @@
                                                             </button>';
                                                             }
                                                             ?>
-                                                            <button type="button" class="btn btn-warning" id="btn-ubah-siswa" name="active" data-toggle="modal">
+                                                            <button type="button" class="btn btn-warning btn-ubah-tahun-ajaran" name="active" data-toggle="modal" data-target="#modal-tambah-ubah" data-id="<?= $ajaran['id_tahun_ajaran'] ?>">
                                                                 <i class="anticon anticon-edit"></i>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#">
+                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-hapus">
                                                                 <i class="anticon anticon-delete"></i>
                                                             </button>
                                                         </td>
@@ -76,7 +77,7 @@
                                                 endforeach;
                                             } else {
                                                 echo '<div class="alert alert-warning">
-                                                Data Tahun Ajaran <strong>Kosong</strong>! <a href="' . base_url . 'tahun_ajaran">Klik di sini untuk menambahkan</a>
+                                                Data Tahun Ajaran <strong>Kosong</strong>! <a href="#" data-toggle="modal" data-target="#modal-tambah-ubah">Klik di sini untuk menambahkan</a>
                                             </div>';
                                             } ?>
                                         </tbody>
@@ -91,7 +92,7 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Tahun Ajaran</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Aktifkan Tahun Ajaran</h5>
                                             <button type="button" class="close" data-dismiss="modal">
                                                 <i class="anticon anticon-close"></i>
                                             </button>
@@ -106,6 +107,56 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                                                 <button type="submit" name="submit_active" class="btn btn-success">Ya</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal-tambah-ubah">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal-tambah-ubah-label">Tambah Tahun Ajaran</h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <i class="anticon anticon-close"></i>
+                                            </button>
+                                        </div>
+                                        <form action="<?= base_url; ?>tahun_ajaran/tambah_tahun_ajaran" method="post">
+                                            <div class="modal-body">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i class="material-icons" style="font-size: 23px;">playlist_add</i></span>
+                                                    </div>
+                                                    <input type="hidden" name="id_tahun_ajaran" id="id_tahun_ajaran">
+                                                    <input type="text" name="new_tahun_ajaran" id="txt_tahun_ajaran" class="form-control" placeholder="Tahun Ajaran (ex. 2018/2019)" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default text-danger" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" name="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modal-hapus">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal-hapus">Hapus Tahun Ajaran</h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <i class="anticon anticon-close"></i>
+                                            </button>
+                                        </div>
+                                        <form action="<?= base_url; ?>tahun_ajaran/hapus_tahun_ajaran" method="post">
+                                            <div class="modal-body">
+                                                <p>Yakin ingin menghapus Tahun Ajaran ini?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default text-danger" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" name="submit" class="btn btn-danger">Hapus</button>
                                             </div>
                                         </form>
                                     </div>
@@ -153,41 +204,38 @@
 
 <script>
     $(document).ready(function() {
-        $('.btnActive').on('click', function() {
-            // console.log('CLICKED 155');
-            // $('#id_kelas_modal').data('id')
-            console.log($(this).data('id'));
-            $('#id_tahun_modal').html($(this).data('id'));
-            $('#tahun_ajaran').html($(this).data('tahun'));
-            $('#get_id_tahun_modal').val($(this).data('id'));
+        $('.tambah-tahun-ajaran').on('click', function() {
+            $('#modal-tambah-ubah-label').html("Tambah Tahun Ajaran");
+            $('.modal-content form').attr('action', 'http://localhost/presensi-smanplus/tahun_ajaran/tambah_tahun_ajaran');
+            $('#txt_tahun_ajaran').val("");
         });
-
-        //CONETEKAN
-        $('.tampilModalTambah').on('click', function() {
-            // console.log('CLICKED');
-            $('#formModalLabel').html('Tambah Kelas');
-            $('#txtNamaKelas').val("");
-        });
-
-        $('.tampilModalUbah').on('click', function() {
-            // console.log('CLICKED');
-            $('#formModalLabel').html('Ubah Kelas');
-            $('.modal-body form').attr('action', 'http://localhost/presensi-smanplus/kelas/ubah');
+        $('.btn-ubah-tahun-ajaran').on('click', function() {
+            $('#modal-tambah-ubah-label').html("Ubah Tahun Ajaran");
+            $('.modal-content form').attr('action', 'http://localhost/presensi-smanplus/tahun_ajaran/ubah_tahun_ajaran');
             const id = $(this).data('id');
-            // console.log(id);
             $.ajax({
-                url: 'http://localhost/presensi-smanplus/kelas/getUbah',
+                url: 'http://localhost/presensi-smanplus/tahun_ajaran/getTahunAjaranbyId',
                 data: {
                     id: id
                 },
                 method: 'post',
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data);
-                    $('#txtNamaKelas').val(data.nama_kelas);
-                    $('#id_kelas').val(data.id_kelas);
+                    // console.log(data);
+                    $('#txt_tahun_ajaran').val(data.tahun_ajaran);
+                    $('#id_tahun_ajaran').val(data.id_tahun_ajaran);
                 }
             });
         });
+
+        $('.btnActive').on('click', function() {
+            const id = $(this).data('id');
+            const tahun = $(this).data('tahun');
+            $('#get_id_tahun_modal').val(id);
+            $('#id_tahun_modal').html(id);
+            $('#tahun_ajaran').html(tahun);
+            // console.log(id);
+        });
+
     });
 </script>

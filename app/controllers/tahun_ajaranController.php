@@ -3,8 +3,10 @@
 class tahun_ajaranController extends Controller
 {
 
+
     public function index()
     {
+        $this->abc = 'as'; 
         $data['tahun_ajaran'] = $this->model('model_tahun_ajaran')->getAllTahunAjaran();
         // echo json_encode($data['tahun_ajaran']);
         $data['title'] = 'Tahun Ajaran';
@@ -51,5 +53,38 @@ class tahun_ajaranController extends Controller
         //     header('Location: ' . base_url . 'tahun_ajaran');
         //     exit;
         // }
+    }
+    public function tambah_tahun_ajaran()
+    {
+        if (!isset($_POST['submit'])) {
+            header('Location: ' . base_url . 'tahun_ajaran');
+            exit;
+        } else if ($this->model('model_tahun_ajaran')->insertTahunAjaran($_POST) > 0) {
+            Flasher::setFlash('Berhasil Ditambahkan', 'success');
+            header('Location: ' . base_url . 'tahun_ajaran');
+            exit;
+        }
+    }
+
+    public function getTahunAjaranbyId()
+    {
+        echo json_encode($this->model('model_tahun_ajaran')->getOneTahunAjaran($_POST['id']));
+    }
+
+    public function ubah_tahun_ajaran()
+    {
+        if (!isset($_POST['submit'])) {
+            header('Location: ' . base_url . 'tahun_ajaran');
+            exit;
+        } else if ($this->model('model_tahun_ajaran')->updateTahunAjaran($_POST) > 0) {
+            Flasher::setFlash('Berhasil diubah', 'success');
+            header('Location: ' . base_url . 'tahun_ajaran');
+            exit;
+        }
+    }
+
+    public function hapus_tahun_ajaran()
+    {
+        
     }
 }
