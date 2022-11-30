@@ -6,12 +6,19 @@ class kelasController extends Controller
 
     public function __construct()
     {
+        if ($_SESSION['session_login'] != 'sudah_login') {
+            Flasher::setFlash('Silahkan Login terlebih dahulu!',  'warning');
+            header('location: ' . base_url . 'auth/login');
+            exit;
+        }
         $this->db = new Database;
     }
 
     public function index()
     {
-        $data['kelas'] = $this->model('model_kelas')->getAllKelas();
+        $data['id_tahun_ajaran'] = $this->model('model_tahun_ajaran')->getActivatedTahunAjaran();
+        $data['kelas'] = $this->model('model_kelas')->getAllKelas($data['id_tahun_ajaran']->id_tahun_ajaran);
+
 
         $data['title'] = $this->kelas;
         $this->view('templates/header', $data);
@@ -23,10 +30,15 @@ class kelasController extends Controller
 
     public function tambah()
     {
+        $data['id_tahun_ajaran'] = $this->model('model_tahun_ajaran')->getActivatedTahunAjaran();
+        $insertData = [
+            'id_tahun_ajaran' => $data['id_tahun_ajaran']->id_tahun_ajaran,
+            'kelas' => $_POST['kelas']
+        ];
         if (!isset($_POST['submit'])) {
             header('Location: ' . base_url . 'kelas');
             exit;
-        } else if ($this->model('model_kelas')->insertKelas($_POST) > 0) {
+        } else if ($this->model('model_kelas')->insertKelas($insertData) > 0) {
             Flasher::setFlash('Berhasil Ditambahkan', 'success');
             header('Location: ' . base_url . 'kelas');
             exit;
@@ -55,13 +67,14 @@ class kelasController extends Controller
         // if (!isset($url[2])) {
         //     header('Location: ' . base_url . 'kelas');
         // }
+
         $id_kelas = $url[2];
         $_SESSION['id_kelas'] = $id_kelas;
         if (!isset($_SESSION['id_kelas'])) {
             header("Location: " . base_url . "kelas");
             exit;
         }
-
+        $data['siswa'] = $this->model('model_detail_kelas')->getAllSiswaTambah();
         $data['kelas'] = $this->model('model_detail_kelas')->getIdKelas($id_kelas);
 
         if ($data['kelas']['id_kelas'] == null) {
@@ -129,16 +142,36 @@ class kelasController extends Controller
     public function delete_siswa()
     {
         if (!isset($_POST['hapus'])) {
-            Flasher::setFlash('Harap pilih salah satu siswa dibawah', 'warning');
-            header('Location: ' . base_url . 'kelas/detail/' . $_SESSION['id_kelas']);
+            header('Location: ' . base_url . 'kelas');
             exit;
         }
         if (isset($_POST['hapus'])) {
-            if ($this->model('model_detail_kelas')->deleteDataSiswa($_POST['nis']) > 0) {
-                Flasher::setFlash('Berhasil Dihapus', 'success');
+            if ($this->model('model_detail_kelas')->deleteSiswafromKelas($_POST['nis']) > 0) {
+                Flasher::setFlash('Berhasil dihapus', 'success');
                 header('Location: ' . base_url . 'kelas/detail/' . $_SESSION['id_kelas']);
                 exit;
             }
+        }
+    }
+
+    public function update_siswa_to_kelas($nis = "")
+    {
+        if ($nis == "") {
+            header("location: " . base_url . "kelas/detail/" . $_SESSION['id_kelas']);
+        }
+        $url = $this->parseURL();
+        $dataGet = [
+            'nis' => $nis,
+            'id_kelas' => $_SESSION['id_kelas']
+        ];
+        if ($this->model('model_detail_kelas')->setSiswatoKelas($dataGet) > 0) {
+            Flasher::setFlash('Berhasil dimasukkan!', 'success');
+            header('Location: ' . base_url . 'kelas/detail/' . $_SESSION['id_kelas']);
+            exit;
+        } else {
+            Flasher::setFlash('Gagal dimasukkan!', 'danger');
+            header('Location: ' . base_url . 'kelas/detail/' . $_SESSION['id_kelas']);
+            exit;
         }
     }
 }

@@ -5074,8 +5074,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
+    background-color: #54cf49;
+    border-color: #54cf49
 }
 
 .page-item.disabled .page-link {
@@ -26821,12 +26821,12 @@ a.badge-purple:focus {
 }
 
 .page-item.active .page-link {
-    background: #3f87f5;
+    background: #10bb00;
     border-color: transparent
 }
 
 .pagination .page-item.active .page-link {
-    background: #3f87f5;
+    background: #10bb00;
     border-color: transparent
 }
 
@@ -26835,7 +26835,7 @@ a.badge-purple:focus {
 }
 
 .pagination .page-item .page-link:hover {
-    color: #3f87f5
+    color: #10bb00
 }
 
 .timeline {

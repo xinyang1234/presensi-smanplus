@@ -1,6 +1,6 @@
 <?php
 
-class model_auth_admin 
+class model_auth_admin
 {
     protected $tb_admin = 'tb_admin';
     protected $db;
@@ -33,26 +33,34 @@ class model_auth_admin
         // }
     }
 
-    public function findUserByEmailOrUsername($email, $username){
-        $this->db->query('SELECT * FROM '. $this->tb_admin .' WHERE username = :username OR email = :email');
-        $this->db->bind('username' , $username);
-        $this->db->bind('email' , $email);
+    public function findUserByEmailOrUsername($email, $username)
+    {
+        $this->db->query('SELECT * FROM ' . $this->tb_admin . ' WHERE username = :username OR email = :email');
+        $this->db->bind('username', $username);
+        $this->db->bind('email', $email);
 
         $row = $this->db->single();
 
         if ($this->db->rowCount() > 0) {
             return $row;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function login($nameOrEmail, $password){
+    public function login($nameOrEmail, $password)
+    {
         $row = $this->findUserByEmailOrUsername($nameOrEmail, $nameOrEmail);
 
         if ($row == false) {
             return false;
         }
-        return $row;
+
+        $hashedPassword = $row->password;
+        if ($password == $hashedPassword) {
+            return $row;
+        } else {
+            return false;
+        }
     }
 }

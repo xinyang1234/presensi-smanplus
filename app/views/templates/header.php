@@ -10,6 +10,9 @@
     <link href="<?= base_url ?>assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
+
+    <!-- page js -->
     <script src="<?= base_url ?>assets/js/vendors.min.js"></script>
     <script src="<?= base_url ?>assets/js/app.min.js"></script>
     <script src="<?= base_url ?>assets/js/main.js"></script>

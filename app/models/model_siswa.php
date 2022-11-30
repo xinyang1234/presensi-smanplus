@@ -12,8 +12,13 @@ class model_siswa
 
     public function getAllSiswa()
     {
-        $this->db->query('SELECT * FROM tb_siswa');
+        $this->db->query('SELECT * FROM tb_siswa ORDER BY tb_siswa.nama_siswa ASC ');
         return $this->db->resultSetAssoc();
+    }
+    public function getCountSiswa()
+    {
+        $this->db->query("SELECT * FROM tb_siswa");
+        return $this->db->rowCounting();
     }
 
     public function insertSiswa($data)

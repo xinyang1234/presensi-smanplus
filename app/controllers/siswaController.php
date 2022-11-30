@@ -2,8 +2,22 @@
 
 class siswaController extends Controller
 {
+
+    public function __construct()
+    {
+        if ($_SESSION['session_login'] != 'sudah_login') {
+            Flasher::setFlash('Silahkan Login terlebih dahulu!',  'warning');
+            header('location: ' . base_url . 'auth/login');
+            exit;
+        }
+    }
     public function index()
     {
+        // $jumlahDataperHalaman = 2;
+        // $jumlahData = $this->model('model_siswa')->getCountSiswa();
+        // $jumlahHalaman = ceil($jumlahData / $jumlahDataperHalaman);
+        // $halamanAktif = $page;
+        // var_dump($halamanAktif);
         $data['data_siswa'] = $this->model('model_siswa')->getAllSiswa();
         $data['title'] = 'Siswa';
         $data['tahun_ajaran'] = $this->model('model_detail_kelas')->getAllTahunAjaran();

@@ -33,7 +33,7 @@
             									</button>
             								</div>
             								<div class="col-lg-1 col-md-12 my-2">
-            									<button type="button" class="btn btn-primary tampilModalTambah" data-toggle="modal" style="width: 100%;" data-target="#exampleModal">
+            									<button type="button" class="btn btn-primary tampilModalTambah" data-toggle="modal" style="width: 100%;" data-target=".bd-example-modal-lg">
             										<i class="anticon anticon-plus" style="width: 100%;"></i>
             									</button>
             								</div>
@@ -47,9 +47,8 @@
             												<th scope="col" style="width: 20px;">No</th>
             												<th scope="col" style="width: 120px;">NIS</th>
             												<th scope="col">Nama</th>
-            												<th scope="col" style="width: 80px;">Jenis Kelamin</th>
-            												<th scope="col" style="width: 150px; text-align: center;">Tahun Masuk</th>
-            												<th scope="col" style="width: 150px; text-align: center;">Ubah / Hapus</th>
+            												<th scope="col" style="width: 100px;">Jenis Kelamin</th>
+            												<th scope="col" style="width: 150px; text-align: center;">Hapus</th>
             											</tr>
             										</thead>
             										<tbody>
@@ -62,14 +61,12 @@
             														<td><?= $siswa['nis']; ?></td>
             														<td><?= $siswa['nama_siswa']; ?></td>
             														<td><?= $siswa['jenis_kelamin']; ?></td>
-            														<td><?= $siswa['tahun_masuk']; ?></td>
             														<td>
-            															<button type="button" data-id="<?= $siswa['nis'] ?>" class="btn btn-warning tampilModalUbah" id="btn-ubah-siswa" data-toggle="modal" data-target="#exampleModal">
-            																<i class="anticon anticon-edit"></i>
-            															</button>
-            															<button type="button" data-id="<?= $siswa['nis'] ?>" data-nama="<?= $siswa['nama_siswa'] ?>" class="btn btn-danger tampilModalHapus" data-toggle="modal" data-target="#model_hapus_siswa">
-            																<i class="anticon anticon-delete"></i>
-            															</button>
+            															<div class="d-flex justify-content-center align-items-center">
+            																<button type="button" data-id="<?= $siswa['nis'] ?>" data-nama="<?= $siswa['nama_siswa'] ?>" class="btn btn-danger tampilModalHapus" data-toggle="modal" data-target="#model_hapus_siswa">
+            																	<i class="anticon anticon-delete"></i>
+            																</button>
+            															</div>
             														</td>
             													</tr>
             											<?php $no++;
@@ -79,106 +76,15 @@
 														} ?>
             										</tbody>
             									</table>
-            								</div>
-            							</div>
-            							<!-- Tambah Siswa Modal -->
-            							<div class="modal fade" id="exampleModal">
-            								<div class="modal-dialog">
-            									<div class="modal-content">
-            										<form action="<?= base_url; ?>kelas/tambah_siswa" method="POST">
-            											<div class="modal-header">
-            												<h5 class="modal-title" id="formModalLabel">Tambah Siswa</h5>
-            												<button type="button" class="close" data-dismiss="modal">
-            													<i class="anticon anticon-close"></i>
-            												</button>
-            											</div>
-            											<div class="modal-body">
-            												<!-- NIS -->
-            												<div class="input-group mb-4">
-            													<div class="input-group-prepend">
-            														<span class="input-group-text" id="basic-addon1"><i class="anticon anticon-idcard" style="font-size: 20px;"></i></span>
-            													</div>
-            													<input type="text" id="txt_nis" name="nis" class="form-control" placeholder="Nomor Induk Siswa" aria-label="NIS" aria-describedby="basic-addon1">
-            													<input type="hidden" name="id_kelas" class="form-control" value="<?= $data['kelas']['id_kelas'] ?>">
-            												</div>
-            												<!-- NAMA -->
-            												<div class="input-group mb-4">
-            													<div class="input-group-prepend">
-            														<span class="input-group-text" id="basic-addon1"><i class="anticon anticon-user" style="font-size: 20px;"></i></span>
-            													</div>
-            													<input type="text" id="txt_nama" name="nama" class="form-control" placeholder="Nama Siswa" aria-label="Nama Siswa" aria-describedby="basic-addon1">
-            												</div>
-            												<!-- ALAMAT -->
-            												<div class="input-group mb-4">
-            													<div class="input-group-prepend">
-            														<span class="input-group-text" id="basic-addon1"><i class="anticon anticon-home" style="font-size: 20px;"></i></span>
-            													</div>
-            													<input type="text" id="txt_alamat" name="alamat" class="form-control" placeholder="Alamat Siswa" aria-label="Alamat Siswa" aria-describedby="basic-addon1">
-            												</div>
-            												<!-- NO TELPON -->
-            												<div class="input-group mb-4">
-            													<div class="input-group-prepend">
-            														<span class="input-group-text" id="basic-addon1"><i class="anticon anticon-contacts" style="font-size: 20px;"></i></span>
-            													</div>
-            													<input type="text" id="txt_telepon" name="telepon" class="form-control" placeholder="Telepon/HP Siswa" aria-label="Telepon/HP Siswa" aria-describedby="basic-addon1">
-            												</div>
-            												<!-- JENIS KELAMIN -->
-            												<label for="radio" class="mr-3">Jenis Kelamin</label>
-            												<div class="d-flex align-items-center justify-content-center input-group mb-2 mt-2">
-            													<!-- <div class="radio mr-3">
-            														<input id="radio" name="radio" type="radio" value="L" checked="">
-            														<label for="radio1">Laki-Laki</label>
-            													</div>
-            													<div class="radio">
-            														<input id="radio" name="radio" value="P" type="radio" checked="	">
-            														<label for="radio2">Perempuan</label>
-            													</div> -->
-            													<div class="radio mr-3">
-            														<input type="radio" name="jk" id="gridRadios1" value="L">
-            														<label for="gridRadios1">
-            															Laki-Laki
-            														</label>
-            													</div>
-            													<div class="radio">
-            														<input type="radio" name="jk" id="gridRadios2" value="P">
-            														<label for="gridRadios2">
-            															Perempuan
-            														</label>
-            													</div>
-            												</div>
-            												<!-- TAHUN AJARAN -->
-            												<label for="dropdown" class="mr-3">Tahun Ajaran</label>
-            												<div class="form-group">
-            													<select class="form-control" id="combo_tahun_ajaran" id="exampleFormControlSelect1" name="tahun_ajaran">
-            														<?php if (!empty($data['tahun_ajaran'])) {
-																		foreach ($data['tahun_ajaran'] as $tahun_ajaran) : ?>
-            																<option value="<?= $tahun_ajaran['id_tahun_ajaran'] ?>"><?= $tahun_ajaran['tahun_ajaran']; ?></option>
-            														<?php
-																		endforeach;
-																	} else {
-																		echo '';
-																	}
-																	?>
-            													</select>
-            												</div>
-            												<!-- TAHUN MASUK -->
-            												<div class="input-group mb-4">
-            													<div class="input-group-prepend">
-            														<span class="input-group-text" id="basic-addon1"><i class="anticon anticon-contacts" style="font-size: 20px;"></i></span>
-            													</div>
-            													<input type="text" id="txt_tahun_masuk" name="tahun_masuk" class="form-control" placeholder="Tahun Masuk" aria-label="Tahun Masuk" aria-describedby="basic-addon1">
-            												</div>
-            												<div class="alert alert-primary text-center" id="notifBawah">
-            													Setelah berhasil menambahkan siswa, Username dan Password default nya adalah <strong>Nomor Induk Siswa</strong>
-            												</div>
-            											</div>
-
-            											<div class="modal-footer">
-            												<button type="button" class="btn btn-danger text-white mr-2" data-dismiss="modal">Tutup</button>
-            												<button type="submit" name="submit" class="btn btn-success">Simpan</button>
-            											</div>
-            										</form>
-            									</div>
+            									<?php
+												if (empty($data['detail_kelas'])) {
+												?>
+            										<div class="d-flex justify-content-center align-items-center pt-3">
+            											<p>Tidak Ada Siswa</p>
+            										</div>
+            									<?php
+												}
+												?>
             								</div>
             							</div>
             							<!-- Tambah Siswa Modal -->
@@ -196,7 +102,7 @@
             											</div>
 
             											<div class="modal-body">
-            												<h6>Yakin ingin menghapus data siswa ini?</h6>
+            												<h6>Yakin ingin menghapus data siswa pada kelas ini?</h6>
             												<input type="hidden" name="nis" id="post_nis_siswa" value="">
             												<p class="d-inline" id="nis_siswa_hapus"></p><span> - </span>
             												<p class="d-inline" id="nama_siswa_hapus">Loremipsum</p>
@@ -210,6 +116,87 @@
             								</div>
             							</div>
             							<!-- Hapus Siswa Modal -->
+            							<!-- Tambah Siswa to Kelas Modal -->
+
+            							<div class="modal fade bd-example-modal-lg">
+            								<div class="modal-dialog modal-lg modal-dialog-scrollable">
+            									<div class="modal-content">
+            										<div class="modal-header">
+            											<h5 class="modal-title h4">Pilih Siswa</h5>
+            											<button type="button" class="close" data-dismiss="modal">
+            												<i class="anticon anticon-close"></i>
+            											</button>
+            										</div>
+            										<div class="mx-4 mt-3">
+            											<h5>Data Siswa<?= $_SESSION['id_kelas'] ?></h5>
+            											<div class="input-group mt-3 pb-3">
+            												<div class="input-group-prepend">
+            													<span class="input-group-text" id="basic-addon1"><i class="material-icons" style="font-size: 20px;">search</i></span>
+            												</div>
+            												<input type="text" id="txt_nis" name="nis" class="form-control" placeholder="Cari NIS / Nama Siswa" aria-label="NIS" aria-describedby="basic-addon1">
+
+            											</div>
+            										</div>
+            										<div class="modal-body">
+            											<div class="">
+            												<div class="table-responsive">
+            													<table class="table">
+            														<thead>
+            															<tr>
+
+            																<th scope="col" style="width: 20px;">No</th>
+            																<th scope="col" style="width: 120px;">NIS</th>
+            																<th scope="col">Nama</th>
+            																<th scope="col" style="width: 100px;">Jenis Kelamin</th>
+            																<th scope="col" style="width: 150px; text-align: center;">Pilih</th>
+            															</tr>
+            														</thead>
+
+            														<tbody>
+            															<?php
+																		$no = 1;
+																		if (!empty($data['siswa'])) {
+																			foreach ($data['siswa'] as $siswa) : ?>
+            																	<tr>
+            																		<th scope="row"><?= $no ?></th>
+            																		<td><?= $siswa['nis']; ?></td>
+            																		<td><?= $siswa['nama_siswa']; ?></td>
+            																		<td><?= $siswa['jenis_kelamin']; ?></td>
+            																		<td>
+            																			<div class="d-flex justify-content-center">
+            																				<!-- <form action="kelas/update_siswa_to_kelas/<?php $siswa['nis'] ?>" method="post">
+            																					<input type="hidden" name="set_id_siswa" value="<?php $siswa['nis'] ?>">
+            																					<button type="submit" name="submit_set" data-id="<?php $siswa['nis'] ?>" value="<?php $siswa['nis'] ?>" class="btn btn-success tambahSiswatoKelas" id="btn-ubah-siswa">
+            																						<i class="material-icons" style="font-size: 20px; padding-top: 4px;">input</i>
+            																					</button>
+            																				</form> -->
+            																				<a href="<?= base_url; ?>kelas/update_siswa_to_kelas/<?= $siswa['nis'] ?>"><i class="material-icons text-success" style="font-size: 20px; padding-top: 4px;">input</i></a>
+            																			</div>
+            																		</td>
+            																	</tr>
+            															<?php $no++;
+																			endforeach;
+																		} else {
+																			echo '';
+																		} ?>
+            														</tbody>
+
+            													</table>
+            													<?php
+																if (empty($data['siswa'])) {
+																?>
+            														<div class="d-flex justify-content-center align-items-center pt-3">
+            															<p>Tidak Ada Siswa</p>
+            														</div>
+            													<?php
+																}
+																?>
+            												</div>
+            											</div>
+            										</div>
+            									</div>
+            								</div>
+            							</div>
             						</div>
             					</div>
             				</div>
@@ -233,6 +220,10 @@
             			$('#txt_telepon').val("");
             			$('#txt_tahun_masuk').val("");
             			$('#notifBawah').addClass("alert alert-primary text-center").html("Setelah berhasil menambahkan siswa, Username dan Password default nya adalah <strong>Nomor Induk Siswa</strong>");
+            		});
+
+            		$('.tambahSiswatoKelas').on('click', function() {
+            			console.log($(this).val());
             		});
 
             		$('.tampilModalUbah').on('click', function() {

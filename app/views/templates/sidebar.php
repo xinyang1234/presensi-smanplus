@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown <?= strtolower($data['title']) === "mata pelajaran" ? 'active' : '' ?>" id="liNav">
-                <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>pelajaran">
+                <a class="dropdown-toggle d-flex pt-3" href="<?= base_url ?>mapel">
                     <span class="icon-holder">
                         <i class="material-icons" style="font-size: 18px;">book</i>
                     </span>
