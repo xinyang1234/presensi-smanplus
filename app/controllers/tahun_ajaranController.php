@@ -3,10 +3,18 @@
 class tahun_ajaranController extends Controller
 {
 
+    public function __construct()
+    {
+        if ($_SESSION['session_login'] != 'sudah_login') {
+            Flasher::setFlash('Silahkan Login terlebih dahulu!',  'warning');
+            header('location: ' . base_url . 'auth/login');
+            exit;
+        }
+    }
 
     public function index()
     {
-        $this->abc = 'as'; 
+        $this->abc = 'as';
         $data['tahun_ajaran'] = $this->model('model_tahun_ajaran')->getAllTahunAjaran();
         // echo json_encode($data['tahun_ajaran']);
         $data['title'] = 'Tahun Ajaran';
@@ -85,6 +93,5 @@ class tahun_ajaranController extends Controller
 
     public function hapus_tahun_ajaran()
     {
-        
     }
 }

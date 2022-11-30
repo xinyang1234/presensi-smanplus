@@ -12,33 +12,13 @@
               </div>
               <?php Flasher::flash(); ?>
               <div class="row">
-                <div class="col-lg-10 col-md-12 my-2">
-                  <div class="form-group">
-                    <input type="text" style="width: 100%;" class="form-control" id="formGroupExampleInput" placeholder="Cari Kelas">
-                  </div>
-                </div>
+
                 <div class="col-lg-1 col-md-12 my-2">
-                  <button class="btn btn-success" style="width: 100%;">
-                    <i class="anticon anticon-search" style="width: 100%;"></i>
-                  </button>
-                </div>
-                <div class="col-lg-1 col-md-12 my-2">
-                  <button type="button" class="btn btn-primary tampilModalTambah" style="width: 100%;" data-toggle="modal" data-target="#modal-tambah-kelas">
+                  <button type="button" class="btn btn-success tampilModalTambah" style="width: 100%;" data-toggle="modal" data-target="#modal-tambah-kelas">
                     <i class=" anticon anticon-plus" style="width: 100%;"></i>
                   </button>
                 </div>
               </div>
-
-              <!-- <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                <span>Tahun Ajaran</span>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">2020/2021</a>
-                                                <a class="dropdown-item" href="#">2021/2022</a>
-                                                <a class="dropdown-item" href="#">2022/2023</a>
-                                            </div>
-                                        </div> -->
               <div class="m-t-10">
                 <div class="row">
                   <?php foreach ($data['kelas'] as $kelas) : ?>

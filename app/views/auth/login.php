@@ -18,7 +18,7 @@
 
 <body>
     <div class="app">
-        <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url('<?= base_url ?>/assets/img/bg-login-1.jpg')">
+        <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url('<?= base_url ?>/assets/images/bg-login.png')">
             <div class="d-flex flex-column justify-content-between w-100">
                 <div class="container d-flex h-100">
                     <div class="row align-items-center w-100">
@@ -57,15 +57,7 @@
                     </div>
                 </div>
                 <div class="d-none d-md-flex p-h-40 justify-content-between">
-                    <span class="text-white">© 2022 NekoID</span>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a class="text-dark text-link" href="">Legal</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="text-dark text-link" href="">Privacy</a>
-                        </li>
-                    </ul>
+                    <span class="text-default">© 2022 NekoID</span>
                 </div>
             </div>
         </div>

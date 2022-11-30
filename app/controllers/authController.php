@@ -4,15 +4,15 @@ class authController extends Controller
 {
     public function __construct()
     {
-        if (isset($_SESSION['session_id'])) {
-            header('Location: ' . base_url . 'home');
-        }
         $this->db = new Database;
         $tb_model = $this->model('model_auth_admin');
     }
 
     public function index()
     {
+        if (isset($_SESSION['session_login'])) {
+            header('Location: ' . base_url);
+        }
         $data['title'] = 'Page';
         $this->view('/auth/login', $data);
     }
@@ -133,9 +133,9 @@ class authController extends Controller
     }
     public function logout()
     {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+        // if (!isset($_SESSION)) {
+        //     session_start();
+        // }
         session_destroy();
         Flasher::setFlash('Berhasil Logout', 'success');
         header('Location: ' . base_url . 'auth/login');

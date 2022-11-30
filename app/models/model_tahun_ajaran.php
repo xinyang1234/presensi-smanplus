@@ -33,12 +33,11 @@ class model_tahun_ajaran
 
     public function updateTahunAjaran($data)
     {
-        $this->db->query('UPDATE ' . $this->table . ' SET ' . $this->table . '.tahun_ajaran = :tahun_ajaran WHERE '. $this->table .'.id_tahun_ajaran = :id_tahun_ajaran');
+        $this->db->query('UPDATE ' . $this->table . ' SET ' . $this->table . '.tahun_ajaran = :tahun_ajaran WHERE ' . $this->table . '.id_tahun_ajaran = :id_tahun_ajaran');
         $this->db->bind('tahun_ajaran', $data['new_tahun_ajaran']);
         $this->db->bind('id_tahun_ajaran', $data['id_tahun_ajaran']);
         $this->db->execute();
         return $this->db->rowCount();
-
     }
 
     public function resetActiveTahun()
@@ -56,5 +55,12 @@ class model_tahun_ajaran
         $this->db->bind('id_tahun_ajaran', $id_kelas);
         $this->db->execute();
         return true;
+    }
+
+    public function getActivatedTahunAjaran()
+    {
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE isActive = :active");
+        $this->db->bind("active", 1);
+        return $this->db->single();
     }
 }
